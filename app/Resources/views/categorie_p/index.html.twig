@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Categorie_ps list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nomc</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for categorie_P in categorie_Ps %}
+            <tr>
+                <td><a href="{{ path('categoriep_show', { 'id': categorie_P.id }) }}">{{ categorie_P.id }}</a></td>
+                <td>{{ categorie_P.nomc }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('categoriep_show', { 'id': categorie_P.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('categoriep_edit', { 'id': categorie_P.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('categoriep_new') }}">Create a new categorie_P</a>
+        </li>
+    </ul>
+{% endblock %}

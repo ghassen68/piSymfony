@@ -1,3 +1,7 @@
+productproduct:
+    resource: "@productproductBundle/Resources/config/routing.yml"
+    prefix:   /product
+
 event_event:
     resource: "@EventBundle/Resources/config/routing.yml"
     prefix:   /event
