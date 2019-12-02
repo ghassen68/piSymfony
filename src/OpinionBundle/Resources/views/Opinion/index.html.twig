@@ -1,6 +1,16 @@
 {% extends 'baseadmin.html.twig' %}
 
 {% block body %}
+    <script>
+        function deleteForumOpinion(id){
+            var deleteID      =   id;
+            var path            =   "{{ path('forum_opinion_delete', {'id': 'id_to_delete'}) }}";
+            path                =   path.replace('id_to_delete',deleteID);
+            $("#deleteFormOpinion").attr('action',path);
+        }
+
+    </script>
+    {% include '@Opinion/Opinion/delete.html.twig' %}
     <div class="content mt-3">
         <div class="animated fadeIn">
             <div class="row">
@@ -31,9 +41,8 @@
                                         <td>
                                             <ul>
 
-                                                <button>
-                                                    <a href="{{ path('opinion_edit', { 'idOp': opinion.idOp }) }}">Edit</a>
-                                                </button>
+                                                <a><span class="flaticon2-delete" data-toggle="modal" data-target="#kt_blockui_opinion_modal" onclick="deleteForumOpinion({{ opinion.idOp }})"></span></a>
+                                        </th>
                                             </ul>
                                         </td>
                                     </tr>
@@ -41,6 +50,10 @@
 
 
                             </table>
+
+                            <div>
+                                {{ knp_pagination_render(opinions) }}
+                            </div>
                         </div>
                     </div>
                 </div>

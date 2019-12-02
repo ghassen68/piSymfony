@@ -2,6 +2,7 @@
 
 namespace OpinionBundle\Controller;
 
+use ForumBundle\Entity\Forum;
 use OpinionBundle\Entity\Opinion;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,17 +22,35 @@ class FeedbackController extends Controller
      * @Route("/", name="opinion_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-
+        $paginator = $this->get('knp_paginator');
         $opinions = $em->getRepository('OpinionBundle:Opinion')->findAll();
-
+        $opinionPaginate  =   $paginator  ->paginate(
+            $opinions,
+            $request->query->getInt('page',1),
+            4
+        );
         return $this->render('OpinionBundle:Opinion:index.html.twig', array(
-            'opinions' => $opinions,
+            'opinions' => $opinionPaginate,
         ));
     }
 
+
+    public function deleteAdminAction(Request $request, Opinion $opinion)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($opinion);
+        try {
+            $entityManager->flush();
+        }catch(\Exception $e)
+        {
+            var_dump($e->getMessage());die;
+        }
+
+        return $this->redirectToRoute('opinion_index');
+    }
     /**
      * Creates a new Opinion entity.
      *

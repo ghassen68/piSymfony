@@ -11,3 +11,7 @@ opinion_success:
 stat:
     path:     /stat
     defaults: { _controller: OpinionBundle:Default:chart }
+forum_opinion_delete:
+    path:     /{id}/opiniondelete
+    defaults: { _controller:  OpinionBundle:Feedback:deleteAdmin }
+    methods:  [GET, DELETE, POST]
