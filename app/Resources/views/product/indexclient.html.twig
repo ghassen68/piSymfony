@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}<center>
+    <h1>Products list</h1>
+
+    <table border="1">
+        <thead>
+        <tr>
+
+            <th>image</th>
+            <th>Marque</th>
+            <th>Color</th>
+            <th>Size</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Genre</th>
+            <th>Qte</th>
+            <th>categorie</th>
+            <th>OPTION</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr>
+
+                <td>
+                    <img class="img-responsive" src="{{ asset('uploads/productimg/') ~ product.typeP  }}" alt="">
+                </td>
+                <td>{{ product.marqueP }}</td>
+                <td>{{ product.colorP }}</td>
+                <td>{{ product.sizeP }}</td>
+                <td>{{ product.priceP }}</td>
+                <td>{{ product.descriptionP }}</td>
+                <td>{{ product.genreP }}</td>
+                <td>{{ product.qteP }}</td>
+                <td>{{ product.categoriep }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('product_show', { 'idP': product.idP }) }}">ajouter au panier</a>
+                        </li>
+
+
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    </center>
+{% endblock %}

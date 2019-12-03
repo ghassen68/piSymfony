@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Product</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Idp</th>
+                <td>{{ product.idP }}</td>
+            </tr>
+            <tr>
+                <th>Typep</th>
+                <td>{{ product.typeP }}</td>
+            </tr>
+            <tr>
+                <th>Marquep</th>
+                <td>{{ product.marqueP }}</td>
+            </tr>
+            <tr>
+                <th>Colorp</th>
+                <td>{{ product.colorP }}</td>
+            </tr>
+            <tr>
+                <th>Sizep</th>
+                <td>{{ product.sizeP }}</td>
+            </tr>
+            <tr>
+                <th>Pricep</th>
+                <td>{{ product.priceP }}</td>
+            </tr>
+            <tr>
+                <th>Descriptionp</th>
+                <td>{{ product.descriptionP }}</td>
+            </tr>
+            <tr>
+                <th>Genrep</th>
+                <td>{{ product.genreP }}</td>
+            </tr>
+            <tr>
+                <th>Qtep</th>
+                <td>{{ product.qteP }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('product_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('product_edit', { 'idP': product.idP }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

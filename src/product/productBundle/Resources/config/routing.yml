@@ -1,0 +1,23 @@
+productproduct_product:
+    resource: "@productproductBundle/Resources/config/routing/product.yml"
+    prefix:   /product/
+
+productproduct_homepage:
+    path:     /index
+    defaults: { _controller: productproductBundle:product:index }
+
+how:
+    path:     /show
+    defaults: { _controller: productproductBundle:product:show }
+
+edit:
+    path:     /edit
+    defaults: { _controller: productproductBundle:product:edit }
+
+new:
+    path:     /new
+    defaults: { _controller: productproductBundle:product:new }
+
+indexclient:
+    path:     /indexclient
+    defaults: { _controller: productproductBundle:product:indexclient}

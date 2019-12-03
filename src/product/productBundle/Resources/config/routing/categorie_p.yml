@@ -1,0 +1,24 @@
+categoriep_index:
+    path:     /
+    defaults: { _controller: "productproductBundle:categorie_P:index" }
+    methods:  GET
+
+categoriep_show:
+    path:     /{id}/show
+    defaults: { _controller: "productproductBundle:categorie_P:show" }
+    methods:  GET
+
+categoriep_new:
+    path:     /new
+    defaults: { _controller: "productproductBundle:categorie_P:new" }
+    methods:  [GET, POST]
+
+categoriep_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "productproductBundle:categorie_P:edit" }
+    methods:  [GET, POST]
+
+categoriep_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "productproductBundle:categorie_P:delete" }
+    methods:  DELETE

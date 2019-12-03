@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new OpinionBundle\OpinionBundle(),
             new EventBundle\EventBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new product\productBundle\productproductBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
