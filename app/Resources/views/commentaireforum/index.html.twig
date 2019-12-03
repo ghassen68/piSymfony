@@ -9,16 +9,18 @@
             <li class="media">
 
                 <a class="pull-left" href="#">
-                    <img class="media-object comment-avatar" src="{{ commentaireForum.user.image }}" alt="" width="50" height="50">
+                    <img class="media-object comment-avatar" src="{{ asset('T/images/facebookprofilepic.jpg') }}" alt="" width="50" height="50">
                 </a>
 
                 <div class="media-body">
                     <div class="comment-info">
                         <h4 class="comment-author">
-                            <a href="#">{{commentaireForum.user}}</a>
-
+                            <a href="#">{{commentaireForum.user.username}}</a>
+                            {% if app.user.id==commentaireForum.user.id   %}
+                                <a href="{{ path("commentaireforum_delete", {'id': commentaireForum.id}) }}"><span class="flaticon-close"></span></a>
+                            {% endif %}
                         </h4>
-                        <time>July 02, 2015, at 11:34</time>
+                        <time>{{commentaireForum.date|date('Y-m-d h:m')}}</time>
                     </div>
 
                     <p>

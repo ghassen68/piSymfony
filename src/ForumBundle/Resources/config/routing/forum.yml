@@ -31,7 +31,7 @@ forum_admin_edit:
 forum_delete:
     path:     /{id}/delete
     defaults: { _controller: "ForumBundle:Forum:delete" }
-    methods:  DELETE
+    methods:  [GET, DELETE]
 
 forum_admin_delete:
     path:     /{id}/admindelete

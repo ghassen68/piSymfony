@@ -2,6 +2,7 @@
 
 namespace ForumBundle\Controller;
 
+use EventBundle\Entity\Reservation;
 use ForumBundle\Entity\CommentaireForum;
 use ForumBundle\Entity\Forum;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -27,6 +28,14 @@ class CommentaireForumController extends Controller
         ));
     }
 
+    public function indexAdminAction(Request $request, Forum $forum)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $commentaireForums = $em->getRepository('ForumBundle:CommentaireForum')->findByForum($forum->getId());
+        return $this->render('commentaireforum/index_admin.html.twig', array(
+            'commentaireForums' => $commentaireForums,
+        ));
+    }
     /**
      * Creates a new commentaireForum entity.
      *
@@ -44,8 +53,7 @@ class CommentaireForumController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($commentaireForum);
             $em->flush();
-
-            return $this->redirectToRoute('commentaireforum_show', array('id' => $commentaireForum->getId()));
+            return $this->redirectToRoute('forum_show', array('id' => $forum->getId()));
         }
 
         return $this->render('commentaireforum/new.html.twig', array(
@@ -97,16 +105,16 @@ class CommentaireForumController extends Controller
      */
     public function deleteAction(Request $request, CommentaireForum $commentaireForum)
     {
-        $form = $this->createDeleteForm($commentaireForum);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($commentaireForum);
-            $em->flush();
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($commentaireForum);
+        try {
+            $entityManager->flush();
+        }catch(\Exception $e)
+        {
+            var_dump($e->getMessage());die;
         }
 
-        return $this->redirectToRoute('commentaireforum_index');
+        return $this->redirectToRoute('forum_show', array('id' => $commentaireForum->getForum()->getId()));
     }
 
     /**

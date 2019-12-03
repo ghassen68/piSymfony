@@ -32,6 +32,9 @@
                                 <div class="post-content">
                                     <p>{{ forums[0].description }}</p>
                                     <a href="{{ path('forum_show', { 'id': forums[0].id }) }}" class="btn btn-main">Continue Reading </a>
+                                    {% if app.user.id==forums[0].user.id   %}
+                                        <a href="{{ path('forum_delete', { 'id': forums[0].id }) }}" class="btn btn-main">Delete </a>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -63,6 +66,9 @@
                                 <div class="post-content">
                                     <p>{{ forums[0].description }}</p>
                                     <a href="{{ path('forum_show', { 'id': forums[0].id }) }}" class="btn btn-main">Continue Reading </a>
+                                    {% if app.user.id==forums[0].user.id   %}
+                                        <a href="{{ path('forum_delete', { 'id': forums[0].id }) }}" class="btn btn-main">Delete </a>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -91,6 +97,9 @@
                                 <div class="post-content">
                                     <p>{{ forums[1].description }}</p>
                                     <a href="{{ path('forum_show', { 'id': forums[1].id }) }}" class="btn btn-main">Continue Reading </a>
+                                    {% if app.user.id==forums[1].user.id   %}
+                                        <a href="{{ path('forum_delete', { 'id': forums[1].id }) }}" class="btn btn-main">Delete </a>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -121,6 +130,9 @@
                                     <div class="post-content">
                                         <p id="{{ forums[i].id }}">{{ forums[i].description }}</p>
                                         <a href="{{ path('forum_show', { 'id': forums[i].id }) }}" class="btn btn-main">Continue Reading </a>
+                                        {% if app.user.id==forums[i].user.id   %}
+                                            <a href="{{ path('forum_delete', { 'id': forums[i].id }) }}" class="btn btn-main">Delete </a>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
@@ -150,6 +162,9 @@
                                     <div class="post-content">
                                         <p>{{ forums[i+1].description }}</p>
                                         <a href="{{ path('forum_show', { 'id': forums[i+1].id }) }}" class="btn btn-main">Continue Reading </a>
+                                        {% if app.user.id==forums[i+1].user.id   %}
+                                            <a href="{{ path('forum_delete', { 'id': forums[i+1].id }) }}" class="btn btn-main">Delete </a>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>

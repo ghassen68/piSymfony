@@ -160,13 +160,13 @@ class ForumController extends Controller
      */
     public function deleteAction(Request $request, Forum $forum)
     {
-        $form = $this->createDeleteForm($forum);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($forum);
-            $em->flush();
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($forum);
+        try {
+            $entityManager->flush();
+        }catch(\Exception $e)
+        {
+            var_dump($e->getMessage());die;
         }
 
         return $this->redirectToRoute('forum_index');

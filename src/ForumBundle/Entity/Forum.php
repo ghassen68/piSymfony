@@ -186,6 +186,13 @@ class Forum
         $this->date = new DateTime();
     }
 
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $user;
+
     /**
      * @return mixed
      */
@@ -201,11 +208,6 @@ class Forum
     {
         $this->user = $user;
     }
-    /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $user;
 }
 
 

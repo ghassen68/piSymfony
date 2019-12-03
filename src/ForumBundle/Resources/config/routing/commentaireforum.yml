@@ -3,6 +3,11 @@ commentaireforum_index:
     defaults: { _controller: "ForumBundle:CommentaireForum:index" }
     methods:  GET
 
+commentaireforum_admin_index:
+    path:     /{id}/indexadmin
+    defaults: { _controller: "ForumBundle:CommentaireForum:indexAdmin" }
+    methods:  GET
+
 commentaireforum_show:
     path:     /{id}/show
     defaults: { _controller: "ForumBundle:CommentaireForum:show" }
@@ -21,4 +26,4 @@ commentaireforum_edit:
 commentaireforum_delete:
     path:     /{id}/delete
     defaults: { _controller: "ForumBundle:CommentaireForum:delete" }
-    methods:  DELETE
+    methods:  [GET, DELETE]

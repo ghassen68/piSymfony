@@ -1,25 +1,6 @@
 {% extends 'baseadmin.html.twig' %}
 
 {% block body %}
-<script>
-    function editForum(id){
-        var editId      =   id;
-        var path        =   "{{ path('forum_admin_edit', {'id': 'id_to_edit'}) }}";
-        path            =   path.replace('id_to_edit',editId);
-        $("#editForm").attr('action',path);
-        $("#forumbundle_forum_title").val('');
-        $("#forumbundle_forum_description").val('');
-        $("#forumbundle_forum_categorie").val('');
-    }
-    function deleteForum(id){
-        var deleteID      =   id;
-        var path            =   "{{ path('forum_admin_delete', {'id': 'id_to_delete'}) }}";
-        path                =   path.replace('id_to_delete',deleteID);
-        $("#deleteForm").attr('action',path);
-    }
-
-</script>
-    {% include 'forum/delete.html.twig' %}
     <div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content">
         {#        <div class="alert alert-light alert-elevate" role="alert">#}
         {#            <div class="alert-icon"><i class="flaticon-warning kt-font-brand"></i></div>#}
@@ -100,39 +81,33 @@
                     <tr>
                         <th>PublicationID</th>
 
-                        <th>Title</th>
+                        <th>Texte</th>
 
-                        <th>Description</th>
+                        <th>Date</th>
 
                         <th>Posted By</th>
 
                         <th>Actions</th>
                     </tr>
-                    {% for forum in forums %}
+                    {% for commentaireForum in commentaireForums %}
 
-                    <tr>
-                        <th> {{ forum.id }}</th>
+                        <tr>
+                            <th> {{ commentaireForum.id }}</th>
 
-                        <th> {{ forum.title }}</th>
+                            <th> {{ commentaireForum.texte }}</th>
 
-                        <th> {{ forum.description }}</th>
+                            <th> {{commentaireForum.date|date('Y-m-d h:m')}}</th>
 
-                        <th> {{ forum.user }} </th>
+                            <th> {{ commentaireForum.user }} </th>
 
-                        <th>
-
-                            <a><span class="flaticon-edit" data-toggle="modal" data-target="#kt_blockui_forum_modal" onclick="editForum({{ forum.id }})"></span></a>
-
-                            <a><span class="flaticon2-delete" data-toggle="modal" data-target="#kt_blockui_delete_modal" onclick="deleteForum({{ forum.id }})"></span></a>
-                            <a href="{{ path("commentaireforum_admin_index", {'id': forum.id}) }}"><span class="flaticon2-analytics"></span></a>
-                        </th>
-                    </tr>
-                        {{ render(controller('ForumBundle:forum:editAdmin',{'id':forum.id})) }}
+                            <th>
+                                <a><span class="flaticon2-delete"></span></a>
+                            </th>
+                        </tr>
                     {% endfor %}
                     </thead>
                 </table>
                 <div>
-                    {{ knp_pagination_render(forums) }}
                 </div>
                 <!--end: Datatable -->
             </div>

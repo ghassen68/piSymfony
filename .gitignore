@@ -13,7 +13,6 @@
 !var/sessions/.gitkeep
 !var/SymfonyRequirements.php
 /vendor/bin/
-/vendor/composer/
 /vendor/doctrine/
 /vendor/fig/
 /vendor/incenteev/
